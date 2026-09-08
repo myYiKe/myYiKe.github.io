@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人作品集 | GitHub Pages</title>
+  <title>个人作品集</title>
   <meta
     name="description"
     content="一个简洁、现代、适合展示个人经历与项目成果的作品集主页。"
@@ -19,204 +19,72 @@
 <body>
   <div class="page-shell">
     <header class="site-header">
-      <a class="brand" href="#top">Portfolio</a>
-      <nav class="site-nav">
-        <a href="#about">关于我</a>
-        <a href="#projects">项目</a>
-        <a href="#timeline">经历</a>
-        <a href="#contact">联系</a>
-      </nav>
+      <a class="brand" href="#top" id="site-brand"></a>
+      <nav class="site-nav" id="site-nav"></nav>
       <button class="theme-toggle" type="button" aria-label="切换主题">
         <span class="theme-toggle__icon">◐</span>
       </button>
     </header>
 
     <main id="top">
+      <!-- 首屏 -->
       <section class="hero">
         <div class="hero__content">
-          <p class="eyebrow">HELLO, I AM</p>
-          <h1>你的名字</h1>
-          <p class="hero__lead">
-            研究者 / 开发者 / 创作者。这里可以放一句最能代表你的定位，
-            比如“专注于交互设计、全栈开发与科研可视化表达”。
-          </p>
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <h1 id="hero-name"></h1>
+          <p class="hero__lead" id="hero-lead"></p>
           <div class="hero__actions">
             <a class="button button--primary" href="#projects">查看作品</a>
             <a class="button button--ghost" href="#contact">联系我</a>
           </div>
-          <ul class="hero__stats">
-            <li>
-              <strong>8+</strong>
-              <span>项目实践</span>
-            </li>
-            <li>
-              <strong>3</strong>
-              <span>核心方向</span>
-            </li>
-            <li>
-              <strong>100%</strong>
-              <span>可定制展示</span>
-            </li>
-          </ul>
+          <ul class="hero__stats" id="hero-stats"></ul>
         </div>
 
         <div class="hero__card">
           <div class="profile-card">
-            <div class="profile-card__avatar">YN</div>
+            <div class="profile-card__avatar" id="profile-avatar"></div>
             <div>
-              <h2>个人名片</h2>
-              <p>城市 / 学校 / 公司</p>
+              <h2 id="profile-title"></h2>
+              <p id="profile-subtitle"></p>
             </div>
-            <ul class="profile-card__tags">
-              <li>Web</li>
-              <li>UI/UX</li>
-              <li>Research</li>
-            </ul>
-            <p class="profile-card__text">
-              这里适合放一段 2-3 行的简介，比如你擅长把复杂问题转化成清晰、
-              好看、可落地的产品与项目成果。
-            </p>
+            <ul class="profile-card__tags" id="profile-tags"></ul>
+            <p class="profile-card__text" id="profile-text"></p>
           </div>
         </div>
       </section>
 
+      <!-- 以下区块内容全部由 assets/content.js 驱动渲染 -->
       <section class="section" id="about">
-        <div class="section__header">
-          <p class="eyebrow">ABOUT</p>
-          <h2>关于我</h2>
-        </div>
-        <div class="about-grid">
-          <article class="panel">
-            <h3>个人介绍</h3>
-            <p>
-              这里可以介绍你的专业背景、研究方向、工作内容或你最关心的问题。
-              建议写成 3-4 句，让访问者在 10 秒内知道你是谁、你擅长什么。
-            </p>
-          </article>
-          <article class="panel">
-            <h3>我的优势</h3>
-            <ul class="feature-list">
-              <li>把抽象想法变成可展示的界面与产品原型</li>
-              <li>兼顾技术实现、视觉表达和项目叙事</li>
-              <li>适合展示科研、开发、设计与跨学科作品</li>
-            </ul>
-          </article>
-        </div>
+        <div class="section__header" id="about-header"></div>
+        <div class="about-grid" id="about-grid"></div>
       </section>
 
       <section class="section" id="projects">
-        <div class="section__header">
-          <p class="eyebrow">SELECTED WORK</p>
-          <h2>精选项目</h2>
-        </div>
-        <div class="project-grid">
-          <article class="project-card">
-            <span class="project-card__badge">Featured</span>
-            <h3>项目一：主打作品名称</h3>
-            <p>
-              用一句话概括这个项目解决了什么问题、有什么亮点，以及你在其中承担了什么角色。
-            </p>
-            <ul class="project-card__meta">
-              <li>角色：设计 / 开发</li>
-              <li>技术：HTML / CSS / JS</li>
-            </ul>
-            <a href="#" aria-label="查看项目一">查看详情</a>
-          </article>
-
-          <article class="project-card">
-            <span class="project-card__badge">Research</span>
-            <h3>项目二：研究或论文展示</h3>
-            <p>
-              适合放毕业设计、论文可视化、实验平台、数据故事等更偏学术的成果。
-            </p>
-            <ul class="project-card__meta">
-              <li>角色：研究 / 实现</li>
-              <li>成果：论文 / Demo</li>
-            </ul>
-            <a href="#" aria-label="查看项目二">查看详情</a>
-          </article>
-
-          <article class="project-card">
-            <span class="project-card__badge">Product</span>
-            <h3>项目三：产品或界面案例</h3>
-            <p>
-              可以展示交互设计、品牌官网、产品主页、工具平台或前端工程项目。
-            </p>
-            <ul class="project-card__meta">
-              <li>角色：负责人</li>
-              <li>方向：产品 / 体验</li>
-            </ul>
-            <a href="#" aria-label="查看项目三">查看详情</a>
-          </article>
-        </div>
+        <div class="section__header" id="projects-header"></div>
+        <div class="project-grid" id="project-grid"></div>
       </section>
 
       <section class="section" id="timeline">
-        <div class="section__header">
-          <p class="eyebrow">TIMELINE</p>
-          <h2>经历与时间线</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <span class="timeline-item__year">2026</span>
-            <div>
-              <h3>当前阶段</h3>
-              <p>正在做什么、研究什么、想解决什么问题。</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-item__year">2025</span>
-            <div>
-              <h3>重要项目或实习</h3>
-              <p>可以写你主导的项目、实习经历、竞赛成果或代表性合作。</p>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-item__year">2024</span>
-            <div>
-              <h3>起点与积累</h3>
-              <p>介绍你如何进入这个领域，以及早期积累的技能与兴趣。</p>
-            </div>
-          </article>
-        </div>
+        <div class="section__header" id="timeline-header"></div>
+        <div class="timeline" id="timeline-list"></div>
       </section>
 
       <section class="section section--skills">
-        <div class="section__header">
-          <p class="eyebrow">SKILLS</p>
-          <h2>技能矩阵</h2>
-        </div>
-        <div class="skills-cloud">
-          <span>Frontend</span>
-          <span>HTML/CSS</span>
-          <span>JavaScript</span>
-          <span>UI Design</span>
-          <span>Figma</span>
-          <span>Research</span>
-          <span>Data Storytelling</span>
-          <span>GitHub Pages</span>
-        </div>
+        <div class="section__header" id="skills-header"></div>
+        <div class="skills-cloud" id="skills-cloud"></div>
       </section>
 
       <section class="section section--contact" id="contact">
-        <div class="section__header">
-          <p class="eyebrow">CONTACT</p>
-          <h2>一起合作</h2>
-        </div>
+        <div class="section__header" id="contact-header"></div>
         <div class="contact-panel">
-          <p>
-            这里可以放邮箱、GitHub、LinkedIn、微信或其他你希望别人联系你的方式。
-          </p>
-          <div class="contact-links">
-            <a href="mailto:your@email.com">your@email.com</a>
-            <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
+          <p id="contact-text"></p>
+          <div class="contact-links" id="contact-links"></div>
         </div>
       </section>
     </main>
   </div>
 
+  <script src="./assets/content.js"></script>
   <script src="./assets/script.js"></script>
 </body>
 </html>
