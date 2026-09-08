@@ -11,74 +11,102 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
     rel="stylesheet"
   >
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="#top" id="site-brand"></a>
-      <nav class="site-nav" id="site-nav"></nav>
-      <button class="theme-toggle" type="button" aria-label="切换主题">
-        <span class="theme-toggle__icon">◐</span>
-      </button>
-    </header>
-
-    <main id="top">
-      <!-- 首屏 -->
-      <section class="hero">
-        <div class="hero__content">
-          <p class="eyebrow" id="hero-eyebrow"></p>
-          <h1 id="hero-name"></h1>
-          <p class="hero__lead" id="hero-lead"></p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#projects">查看作品</a>
-            <a class="button button--ghost" href="#contact">联系我</a>
-          </div>
-          <ul class="hero__stats" id="hero-stats"></ul>
+  <div class="layout">
+    <!-- 侧边栏：头像 + 菜单，内容由 content.js 驱动 -->
+    <aside class="sidebar card">
+      <div class="sidebar__profile">
+        <img class="sidebar__avatar" id="sidebar-avatar" alt="头像">
+        <div>
+          <div class="sidebar__name" id="sidebar-name"></div>
+          <div class="sidebar__status" id="sidebar-status"></div>
         </div>
+      </div>
+      <nav class="menu">
+        <p class="menu__caption">MENU</p>
+        <span id="site-menu"></span>
+      </nav>
+    </aside>
 
-        <div class="hero__card">
-          <div class="profile-card">
-            <div class="profile-card__avatar" id="profile-avatar"></div>
-            <div>
-              <h2 id="profile-title"></h2>
-              <p id="profile-subtitle"></p>
+    <main class="main" id="top">
+      <!-- 首页小组件 -->
+      <section id="home">
+        <div class="widget-grid">
+          <div class="card widget widget--photo card--hover">
+            <img class="photo-card__img" id="home-photo" alt="装饰照片墙">
+          </div>
+
+          <div class="card widget widget--clock">
+            <div class="clock">
+              <div class="clock__panel">
+                <div class="clock__time" id="clock-time">--:--</div>
+              </div>
+              <div class="clock__date" id="clock-date"></div>
             </div>
-            <ul class="profile-card__tags" id="profile-tags"></ul>
-            <p class="profile-card__text" id="profile-text"></p>
+          </div>
+
+          <div class="card widget widget--greeting">
+            <div class="greeting">
+              <div class="greeting__avatar-wrap">
+                <img class="greeting__avatar" id="greeting-avatar" alt="头像">
+              </div>
+              <p class="greeting__hello" id="greeting-hello"></p>
+              <p class="greeting__intro" id="greeting-intro"></p>
+              <p class="greeting__role" id="greeting-role"></p>
+            </div>
+          </div>
+
+          <div class="card widget widget--calendar">
+            <div class="calendar__head">
+              <span class="calendar__title" id="calendar-title"></span>
+            </div>
+            <div class="calendar__week">
+              <span>一</span><span>二</span><span>三</span><span>四</span>
+              <span>五</span><span>六</span><span>日</span>
+            </div>
+            <div class="calendar__grid" id="calendar-grid"></div>
+          </div>
+
+          <div class="widget widget--social">
+            <div class="social-row" id="social-row"></div>
+          </div>
+
+          <div class="card widget widget--updates">
+            <p class="updates__title" id="updates-title"></p>
+            <div id="updates-list"></div>
           </div>
         </div>
       </section>
 
-      <!-- 以下区块内容全部由 assets/content.js 驱动渲染 -->
-      <section class="section" id="about">
-        <div class="section__header" id="about-header"></div>
-        <div class="about-grid" id="about-grid"></div>
-      </section>
-
-      <section class="section" id="projects">
-        <div class="section__header" id="projects-header"></div>
+      <!-- 项目 -->
+      <section id="projects">
+        <div class="section-header"><h2 id="projects-title"></h2></div>
         <div class="project-grid" id="project-grid"></div>
       </section>
 
-      <section class="section" id="timeline">
-        <div class="section__header" id="timeline-header"></div>
+      <!-- 经历 -->
+      <section id="timeline">
+        <div class="section-header"><h2 id="timeline-title"></h2></div>
         <div class="timeline" id="timeline-list"></div>
       </section>
 
-      <section class="section section--skills">
-        <div class="section__header" id="skills-header"></div>
-        <div class="skills-cloud" id="skills-cloud"></div>
+      <!-- 技能 -->
+      <section id="skills">
+        <div class="section-header"><h2 id="skills-title"></h2></div>
+        <div class="card skills-cloud" id="skills-cloud"></div>
       </section>
 
-      <section class="section section--contact" id="contact">
-        <div class="section__header" id="contact-header"></div>
-        <div class="contact-panel">
+      <!-- 联系 -->
+      <section id="contact">
+        <div class="section-header"><h2 id="contact-title"></h2></div>
+        <div class="card contact-panel">
           <p id="contact-text"></p>
-          <div class="contact-links" id="contact-links"></div>
+          <div class="social-row" id="contact-links"></div>
         </div>
       </section>
     </main>
