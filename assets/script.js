@@ -54,8 +54,6 @@ function renderSidebar(profile, nav) {
 
 // ---------- 首页小组件 ----------
 function renderHome(content) {
-  document.getElementById("home-photo").src = content.homePhoto;
-
   // 问候卡：根据当前时间显示不同问候语
   const hour = new Date().getHours();
   const hello = hour < 6 ? "Good Night" : hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
@@ -65,38 +63,68 @@ function renderHome(content) {
 
   const intro = document.getElementById("greeting-intro");
   intro.append("I'm ", createElement("strong", "", content.profile.name), " , Nice to meet you!");
-
-  // 社交按钮
-  const row = document.getElementById("social-row");
-  content.social.forEach((item) => row.append(buildSocialButton(item)));
-
-  // 最新动态
-  document.getElementById("updates-title").textContent = content.updates.title;
-  const list = document.getElementById("updates-list");
-  content.updates.items.forEach((item) => {
-    const thumb = createElement("img", "updates__thumb");
-    thumb.src = content.profile.avatar;
-    thumb.alt = "";
-    const body = createElement("div");
-    body.append(
-      createElement("p", "updates__name", item.title),
-      createElement("p", "updates__desc", item.desc),
-      createElement("p", "updates__date", item.date)
-    );
-    list.append(createElement("div", "updates__item"));
-    list.lastElementChild.append(thumb, body);
-  });
 }
 
 function buildSocialButton(item) {
-  const btn = createElement("a", "social-btn" + (item.dark ? " social-btn--dark" : ""), "");
-  btn.href = item.url;
-  if (item.url.startsWith("http")) {
-    btn.target = "_blank";
-    btn.rel = "noreferrer";
+  const isMail = item.url.startsWith("mailto:");
+  const isTel = item.url.startsWith("tel:");
+  const isCopy = isMail || isTel;
+  const tag = isCopy ? "button" : "a";
+
+  const btn = createElement(tag, "social-btn" + (item.dark ? " social-btn--dark" : ""), "");
+
+  if (!isCopy) {
+    btn.href = item.url;
+    if (item.url.startsWith("http")) {
+      btn.target = "_blank";
+      btn.rel = "noreferrer";
+    }
+  } else {
+    btn.type = "button";
+    const copyText = isMail ? item.url.slice(7) : item.url.slice(4);
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(copyText).then(() => {
+        const label = btn.querySelector("span");
+        const original = label.textContent;
+        label.textContent = "已复制";
+        setTimeout(() => (label.textContent = original), 1200);
+      });
+    });
   }
+
   btn.append(icon(item.icon), createElement("span", "", item.label));
   return btn;
+}
+
+// ---------- 图片详情弹窗 ----------
+function openLightbox(src) {
+  const overlay = createElement("div", "lightbox");
+  const img = createElement("img", "lightbox__img");
+  img.src = src;
+  img.alt = "凭证详情";
+
+  const close = createElement("button", "lightbox__close", "×");
+  close.type = "button";
+  close.setAttribute("aria-label", "关闭");
+
+  overlay.append(img, close);
+  document.body.append(overlay);
+  document.body.style.overflow = "hidden";
+
+  function closeLightbox() {
+    overlay.remove();
+    document.body.style.overflow = "";
+  }
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay || e.target === close) closeLightbox();
+  });
+  document.addEventListener("keydown", function onKey(e) {
+    if (e.key === "Escape") {
+      closeLightbox();
+      document.removeEventListener("keydown", onKey);
+    }
+  });
 }
 
 // ---------- 时钟与日历 ----------
@@ -178,24 +206,47 @@ function renderProjects(projects) {
     }
 
     card.append(head, tags, desc, links);
+
+    if (item.note) {
+      const note = createElement("p", "project-card__note", item.note);
+      card.append(note);
+    }
+
     grid.append(card);
   });
 }
 
 // ---------- 经历时间线 ----------
 function renderTimeline(timeline) {
-  document.getElementById("timeline-title").textContent = timeline.title;
-  const list = document.getElementById("timeline-list");
+  document.getElementById("widget-timeline-title").textContent = timeline.title;
+  const list = document.getElementById("widget-timeline-list");
+  list.className = "widget-timeline__list";
 
-  timeline.items.forEach((item) => {
-    const row = createElement("article", "card card--hover timeline-item");
-    const body = createElement("div");
-    body.append(
-      createElement("h3", "", item.title),
-      createElement("p", "", item.description)
-    );
-    row.append(createElement("span", "timeline-item__year", item.year), body);
-    list.append(row);
+  timeline.groups.forEach((group) => {
+    const groupEl = createElement("div", "widget-timeline__group");
+    groupEl.append(createElement("p", "widget-timeline__group-title", group.title));
+
+    group.items.forEach((item) => {
+      const row = createElement("article", "widget-timeline__item");
+      const body = createElement("div");
+      body.append(
+        createElement("h3", "", item.title),
+        createElement("p", "", item.description)
+      );
+
+      row.append(createElement("span", "widget-timeline__year", item.year), body);
+
+      if (item.detail) {
+        const arrow = createElement("span", "widget-timeline__detail-arrow", "›");
+        arrow.title = "查看凭证";
+        arrow.addEventListener("click", () => openLightbox(item.detail));
+        row.append(arrow);
+      }
+
+      groupEl.append(row);
+    });
+
+    list.append(groupEl);
   });
 }
 

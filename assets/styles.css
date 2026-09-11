@@ -204,22 +204,16 @@ h1, h2, h3, p {
   padding: 22px;
 }
 
-.widget--photo { grid-column: span 7; padding: 12px; }
-.widget--clock { grid-column: span 5; }
-.widget--greeting { grid-column: span 7; }
-.widget--calendar { grid-column: span 5; grid-row: span 2; }
-.widget--social { grid-column: span 7; padding: 0; background: none; border: none; box-shadow: none; backdrop-filter: none; }
-.widget--updates { grid-column: span 5; }
-
-/* 照片卡 */
-.photo-card__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 180px;
-  object-fit: cover;
-  border-radius: calc(var(--radius) - 8px);
+.widget--greeting {
+  grid-column: span 7;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
 }
+.widget--clock { grid-column: span 5; }
+.widget--calendar { grid-column: span 5; }
 
 /* 时钟 */
 .clock {
@@ -259,6 +253,7 @@ h1, h2, h3, p {
   gap: 14px;
   text-align: center;
   padding: 30px 22px;
+  flex-shrink: 0;
 }
 
 .greeting__avatar-wrap {
@@ -303,6 +298,132 @@ h1, h2, h3, p {
   font-size: 0.92rem;
   color: var(--text-faint);
   font-weight: 600;
+}
+
+/* 个人信息框内的经历时间线 */
+.widget-timeline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 22px 26px 26px;
+  border-top: 1px solid rgba(138, 147, 166, 0.12);
+}
+
+.widget-timeline__title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.widget-timeline__list {
+  display: grid;
+  gap: 18px;
+  overflow-y: auto;
+}
+
+.widget-timeline__group {
+  display: grid;
+  gap: 10px;
+}
+
+.widget-timeline__group-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.widget-timeline__item {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--card-solid);
+  box-shadow: 0 4px 14px rgba(96, 116, 108, 0.08);
+}
+
+.widget-timeline__year {
+  font-weight: 800;
+  color: var(--accent-deep);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+
+.widget-timeline__item h3 {
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.widget-timeline__item p {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+.widget-timeline__detail-arrow {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: 1.1rem;
+  font-weight: 400;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.widget-timeline__detail-arrow:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+/* 图片详情弹窗 */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  background: rgba(45, 50, 58, 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox__img {
+  max-width: min(900px, calc(100% - 40px));
+  max-height: calc(100vh - 80px);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  object-fit: contain;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 
 /* 日历 */
@@ -362,11 +483,15 @@ h1, h2, h3, p {
   align-items: center;
   gap: 8px;
   padding: 11px 20px;
+  border: none;
   border-radius: 999px;
   background: var(--card-solid);
   box-shadow: var(--shadow);
+  font-family: inherit;
   font-weight: 800;
   font-size: 0.92rem;
+  color: inherit;
+  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -488,6 +613,8 @@ h1, h2, h3, p {
 }
 
 .project-card__tags li {
+  display: inline-flex;
+  align-items: center;
   padding: 4px 12px;
   border-radius: 999px;
   background: rgba(138, 147, 166, 0.12);
@@ -505,6 +632,13 @@ h1, h2, h3, p {
 .project-card__links {
   display: flex;
   gap: 10px;
+}
+
+.project-card__note {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  line-height: 1.55;
+  margin-top: -4px;
 }
 
 .link-btn {

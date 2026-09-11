@@ -37,19 +37,6 @@
       <!-- 首页小组件 -->
       <section id="home">
         <div class="widget-grid">
-          <div class="card widget widget--photo card--hover">
-            <img class="photo-card__img" id="home-photo" alt="装饰照片墙">
-          </div>
-
-          <div class="card widget widget--clock">
-            <div class="clock">
-              <div class="clock__panel">
-                <div class="clock__time" id="clock-time">--:--</div>
-              </div>
-              <div class="clock__date" id="clock-date"></div>
-            </div>
-          </div>
-
           <div class="card widget widget--greeting">
             <div class="greeting">
               <div class="greeting__avatar-wrap">
@@ -58,6 +45,19 @@
               <p class="greeting__hello" id="greeting-hello"></p>
               <p class="greeting__intro" id="greeting-intro"></p>
               <p class="greeting__role" id="greeting-role"></p>
+            </div>
+            <div class="widget-timeline">
+              <p class="widget-timeline__title" id="widget-timeline-title"></p>
+              <div id="widget-timeline-list"></div>
+            </div>
+          </div>
+
+          <div class="card widget widget--clock">
+            <div class="clock">
+              <div class="clock__panel">
+                <div class="clock__time" id="clock-time">--:--</div>
+              </div>
+              <div class="clock__date" id="clock-date"></div>
             </div>
           </div>
 
@@ -71,15 +71,6 @@
             </div>
             <div class="calendar__grid" id="calendar-grid"></div>
           </div>
-
-          <div class="widget widget--social">
-            <div class="social-row" id="social-row"></div>
-          </div>
-
-          <div class="card widget widget--updates">
-            <p class="updates__title" id="updates-title"></p>
-            <div id="updates-list"></div>
-          </div>
         </div>
       </section>
 
@@ -87,12 +78,6 @@
       <section id="projects">
         <div class="section-header"><h2 id="projects-title"></h2></div>
         <div class="project-grid" id="project-grid"></div>
-      </section>
-
-      <!-- 经历 -->
-      <section id="timeline">
-        <div class="section-header"><h2 id="timeline-title"></h2></div>
-        <div class="timeline" id="timeline-list"></div>
       </section>
 
       <!-- 技能 -->
