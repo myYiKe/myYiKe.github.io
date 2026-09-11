@@ -9,7 +9,7 @@ const SITE_CONTENT = {
   profile: {
     name: "李明阳",
     status: "求职中",            // 侧边栏名字旁边的状态小字，如：求职中 / 在读 / 开发中
-    role: "AI应用技术骨干 / 端到端架构 / AI评测体系 / 产品技术闭环",  // 问候卡里的一句话定位
+    role: "AI应用技术 / 端到端架构 / 产品技术闭环 / 计算机视觉",  // 问候卡里的一句话定位
     // 头像：使用站点内 assets/头像.jpg
     avatar: "./assets/头像.jpg",
   },
@@ -130,7 +130,7 @@ const SITE_CONTENT = {
   // ---------- 联系方式 ----------
   contact: {
     title: "联系我",
-    text: "正在寻找实习/校招机会。定位AI应用核心技术骨干/业务线技术Owner（非纯技术岗）。具备模型应用架构、Agent系统、后端开发及AI评测的硬核能力；拥有强烈的产品思维，能主导产品技术路线并推动业务落地。拒绝做纯执行者，致力于将前沿技术转化为实际商业价值。欢迎有AI落地场景的团队交流。",
+    text: "正在寻找实习/校招机会。定位AI应用技术/业务线技术Owner（非纯技术岗）。具备模型应用架构、Agent系统、后端开发的能力；拥有产品思维，能主导产品技术路线并推动业务落地。致力于将前沿技术转化为实际商业价值。欢迎有AI落地场景的团队交流。",
     links: [
       { label: "3037372286@qq.com", icon: "mail", url: "mailto:3037372286@qq.com" },
       { label: "GitHub", icon: "github", url: "https://github.com/myYiKe", dark: true },
