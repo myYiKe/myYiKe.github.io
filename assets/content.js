@@ -58,7 +58,7 @@ const SITE_CONTENT = {
         icon: "AI",
         hue: "sky",
         name: "ShelfMind · AI 视频巡检",
-        year: "2026",
+        year: "2025",
         tags: ["YOLOv8", "CLIP", "FAISS", "LLM", "Gradio"],
         description: "面向连锁便利店与校园商超的多模态巡检系统：视频抽帧→YOLO 检测→CLIP 图文对齐→FAISS 检索→LLM 问答→Gradio 可解释展示。我负责环境整备、端到端链路搭建与多后端 LLM 适配。",
         links: { github: "https://github.com/myYiKe/AI-Video-Inspection" },
